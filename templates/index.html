@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Notes</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <h1>Notes</h1>
+
+  <form method="POST" action="/add" class="card">
+    <input name="title" placeholder="Title" required>
+    <textarea name="content" rows="4" placeholder="Your note..." required></textarea>
+    <button type="submit">Add</button>
+  </form>
+
+  {% for n in notes %}
+    <div class="note card">
+      <div class="note-head">
+        <h3>{{ n.title }}</h3>
+        <a class="danger" href="/delete/{{ n.id }}">Delete</a>
+      </div>
+      <p>{{ n.content }}</p>
+      <small>{{ n.created_at }}</small>
+    </div>
+  {% else %}
+    <p>No notes yet.</p>
+  {% endfor %}
+</body>
+</html>
+
